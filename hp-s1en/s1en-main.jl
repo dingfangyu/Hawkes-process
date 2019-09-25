@@ -2,7 +2,7 @@ include("hp-s1en.jl")
 
 # read data
 using DelimitedFiles
-raw_data = readdlm("naive-data.txt")
+raw_data = readdlm("s1en-data.txt")
 data = raw_data[:, 1]
 
 
