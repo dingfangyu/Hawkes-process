@@ -3,11 +3,11 @@ naive Hawkes process:
 - 1 kind of event
 - 1 sample
 """
-mutable struct naive_hp
+mutable struct hp_s1e1
     mu::Float64
     alpha::Float64
 
-    function naive_hp()
+    function hp_s1e1()
         mu::Float64 = rand(Float64) / 10
         alpha::Float64 = rand(Float64) / 10
         return new(mu, alpha)

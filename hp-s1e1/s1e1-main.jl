@@ -1,4 +1,4 @@
-include("naive-hp.jl")
+include("hp_s1e1.jl")
 
 
 # read data
@@ -8,7 +8,7 @@ data = raw_data[:, 1]
 
 
 # train
-model = naive_hp()
+model = hp_s1e1()
 mu_his = [model.mu]
 al_his = [model.alpha]
 loss_his = [loss(model, data)]
