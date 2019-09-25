@@ -4,7 +4,7 @@ mutable struct hp_s1en
     alpha::Array
 
     function hp_s1en(event_num::Int)
-        mu = rand(Float64, event_num) # 1-dim Array
+        mu = rand(Float64, event_num)# 1-dim Array
         alpha = rand(Float64, event_num, event_num) # 2-dim Array
         return new(event_num, mu, alpha)
     end
@@ -15,7 +15,7 @@ end # struct
 kernel function
 - exp kernel
 """
-const lambda = 0.1
+const lambda = 0.04
 g(t::Float64) = lambda * exp(-lambda * t)
 G(t::Float64) = 1 - exp(-lambda * t)
 
@@ -76,6 +76,9 @@ function train!(
     println("begin training")
     n::Int = length(t)
     n_e::Int = maximum(e)
+
+    T0::Float64 = t[1]
+    T::Float64 = t[end]
 
     for iter = 1:iterations
         # p
