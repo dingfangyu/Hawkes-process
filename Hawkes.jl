@@ -2,15 +2,15 @@
 Hawkes process model with multiple samples and event types
 """
 mutable struct Hawkes
-    event_num::Int
+    events_num::Int
     mu::Array
     alpha::Array
 
-    function Hawkes(event_num)
-        mu = rand(Float64, event_num) # 1-dim Array
-        alpha = rand(Float64, event_num, event_num) # 2-dim Array
-        return new(event_num, mu, alpha)
-    end # function
+    function Hawkes(;events_num::Int=1)
+        mu = rand(Float64, events_num) # 1-dim Array
+        alpha = rand(Float64, events_num, events_num) # 2-dim Array
+        return new(events_num, mu, alpha)
+    end
 end
 
 
@@ -18,7 +18,7 @@ end
 kernel function
 - exp kernel
 """
-const lambda = 0.1
+const lambda = 0.04
 g(t::Float64) = lambda * exp(-lambda * t)
 G(t::Float64) = 1 - exp(-lambda * t)
 
@@ -55,24 +55,19 @@ function loss(model::Hawkes, data::Array)
             )
         end
 
-
         # mu
         l -= (T - T0) * sum(model.mu)
 
-
         # alpha
-        aG_sum::Float64 = 0.
-        n_e::Int = maximum(e)
-        for ev = 1:n_e
+        aG_sum::Float64 = 0.0
+        for ev = 1:model.events_num
             for j = 1:n
                 aG_sum += model.alpha[ev, e[j]] * G(T - t[j])
             end
         end
 
         l -= aG_sum
-
     end
-
 
     return -l
 end # function
@@ -120,7 +115,7 @@ function train!(
         end
 
         # update mu
-        for ev in 1:model.event_num
+        for ev in 1:model.events_num
             mu_num::Float64 = 0.0
             mu_den::Float64 = 0.0
             for s = 1:samples_num
@@ -143,8 +138,8 @@ function train!(
         end
 
         # update alpha
-        for u = 1:model.event_num
-            for v = 1:model.event_num
+        for u = 1:model.events_num
+            for v = 1:model.events_num
                 al_num::Float64 = 0.0
                 al_den::Float64 = 0.0
 
