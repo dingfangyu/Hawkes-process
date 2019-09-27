@@ -8,7 +8,7 @@ data = load_data(files)
 
 
 # model
-model = Hawkes(events_num=2)
+model = Hawkes(event_types_num=2)
 
 
 # train

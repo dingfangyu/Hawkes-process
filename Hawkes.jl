@@ -2,14 +2,16 @@
 Hawkes process model with multiple samples and event types
 """
 mutable struct Hawkes
-    events_num::Int
+    event_types_num::Int
     mu::Array
     alpha::Array
 
-    function Hawkes(;events_num::Int=1)
-        mu = rand(Float64, events_num) # 1-dim Array
-        alpha = rand(Float64, events_num, events_num) # 2-dim Array
-        return new(events_num, mu, alpha)
+    function Hawkes(;event_types_num::Int=1)
+        etn = event_types_num
+        
+        mu = rand(Float64, etn) # 1-dim Array
+        alpha = rand(Float64, etn, etn) # 2-dim Array
+        return new(etn, mu, alpha)
     end
 end
 
@@ -60,7 +62,7 @@ function loss(model::Hawkes, data::Array)
 
         # alpha
         aG_sum::Float64 = 0.0
-        for ev = 1:model.events_num
+        for ev = 1:model.event_types_num
             for j = 1:n
                 aG_sum += model.alpha[ev, e[j]] * G(T - t[j])
             end
@@ -115,7 +117,7 @@ function train!(
         end
 
         # update mu
-        for ev in 1:model.events_num
+        for ev in 1:model.event_types_num
             mu_num::Float64 = 0.0
             mu_den::Float64 = 0.0
             for s = 1:samples_num
@@ -138,8 +140,8 @@ function train!(
         end
 
         # update alpha
-        for u = 1:model.events_num
-            for v = 1:model.events_num
+        for u = 1:model.event_types_num
+            for v = 1:model.event_types_num
                 al_num::Float64 = 0.0
                 al_den::Float64 = 0.0
 

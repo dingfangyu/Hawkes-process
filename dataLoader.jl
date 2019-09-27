@@ -1,6 +1,10 @@
 using DelimitedFiles
 
-
+"""
+A file corresponds to a sample,
+recording a sequence of (t_i, e_i),
+e_i refers to the event type of the i-th event.
+"""
 function load_data(files::Array{String, 1})
     data = Array{Array, 1}()
 
