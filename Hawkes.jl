@@ -1,9 +1,12 @@
-mutable struct hp_smen
+"""
+Hawkes process model with multiple samples and event types
+"""
+mutable struct Hawkes
     event_num::Int
     mu::Array
     alpha::Array
 
-    function hp_smen(event_num)
+    function Hawkes(event_num)
         mu = rand(Float64, event_num) # 1-dim Array
         alpha = rand(Float64, event_num, event_num) # 2-dim Array
         return new(event_num, mu, alpha)
@@ -15,7 +18,7 @@ end
 kernel function
 - exp kernel
 """
-const lambda = 0.04
+const lambda = 0.1
 g(t::Float64) = lambda * exp(-lambda * t)
 G(t::Float64) = 1 - exp(-lambda * t)
 
@@ -27,7 +30,7 @@ negative log-likelihood
          t_si: Array{Float64, 1}
          e_si: Array{Int, 1}
 """
-function loss(model::hp_smen, data::Array)
+function loss(model::Hawkes, data::Array)
     samples_num::Int = length(data)
 
     l::Float64 = 0.0
@@ -79,7 +82,7 @@ end # function
 train
 """
 function train!(
-    model::hp_smen,
+    model::Hawkes,
     data::Array,
     lo_his::Array
     ;
@@ -90,8 +93,8 @@ function train!(
 
     for iter = 1:iterations
         # get p: psij
-        # p = Array{Array{Float64, 2}}()
-        p = []
+        p = Array{Array{Float64, 2}, 1}()
+
         for s = 1:samples_num
             t::Array{Float64, 1} = data[s][1]
             e::Array{Int, 1} = data[s][2]
