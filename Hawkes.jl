@@ -25,7 +25,7 @@ G(t::Float64) = 1 - exp(-lambda * t)
 
 """
 negative log-likelihood
- - data: Array{Any, 1}
+ - data: Array{Array{Array{Any}, 1}, 1}
          [[t_s1, e_s1], [t_s2, e_s2], ...[t_sm, e_sm]]
          t_si: Array{Float64, 1}
          e_si: Array{Int, 1}
@@ -79,7 +79,7 @@ end # function
 
 
 """
-train
+training by ADMM
 """
 function train!(
     model::Hawkes,
