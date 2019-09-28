@@ -1,18 +1,18 @@
 # Hawkes process
 Hawkes process in JuliaLang v1.2.0
 
-#### data features
+### data features
 
 - Multiple samples and event types
 
-#### decay kernel
+### decay kernel
 
 - exponential kernel
 
-#### loss function
+### loss function
 
 - negative log-likelihood 
 
-#### optimization
+### optimization
 
 - ADMM
