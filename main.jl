@@ -17,29 +17,17 @@ train!(model, data, loss_his; iterations=100)
 
 
 # plot
-# println(model.mu)
-# println(model.alpha)
-
-
 using PyCall
 @pyimport matplotlib.pyplot as plt
 
 
-# plt.plot(loss_his, label="loss")
-# plt.legend()
-# plt.show()
-#
-# plt.imshow(model.alpha)
-# plt.show()
-
-
 # predict
-plt.plot(data[1][1])
+plt.hist(data[1][1], 200)
 plt.show()
 
 
-predict(model, data[1], 1000.0)
+predict(model, data[1], 10000.0)
 
 
-plt.plot(data[1][1])
+plt.hist(data[1][1], 2000)
 plt.show()
