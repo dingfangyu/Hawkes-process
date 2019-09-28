@@ -3,7 +3,8 @@ Hawkes process in JuliaLang v1.2.0
 
 ### data features
 
-- Multiple samples and event types
+- multiple samples
+- multiple types of event
 
 ### decay kernel
 
