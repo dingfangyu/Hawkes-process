@@ -1,10 +1,11 @@
 # Hawkes process
-Hawkes process in JuliaLang v1.2.0
+Context-sensitive multivariate Hawkes process in JuliaLang v1.2.0
 
-### data features
+### data
 
 - multiple samples
 - multiple types of event
+- context (temporary state)
 
 ### decay kernel
 
@@ -12,8 +13,12 @@ Hawkes process in JuliaLang v1.2.0
 
 ### loss function
 
-- negative log-likelihood 
+- negative log-likelihood
 
 ### optimization
 
 - ADMM
+
+### simulation
+
+- Ogata's thinning algorithm (TODO)
