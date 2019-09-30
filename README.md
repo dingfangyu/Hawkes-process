@@ -22,3 +22,10 @@ Context-sensitive multivariate Hawkes process in JuliaLang v1.2.0
 ### simulation
 
 - Ogata's thinning algorithm (TODO)
+
+### regularization
+
+- low-rank
+  - nuclear norm (TODO)
+- sparsity
+  - l1 norm (TODO)
