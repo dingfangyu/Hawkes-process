@@ -1,6 +1,6 @@
 """
-get_p:
-    p: ADMM auxiliary matrix
+get_pq:
+    p, q: ADMM auxiliary matrix
 """
 function get_pq(
         model::Hawkes,
