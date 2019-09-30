@@ -12,6 +12,7 @@ function load_data(files::Array{String, 1})
         raw_data = readdlm(file)
 
         t = raw_data[:, 1]
+        n = length(t)
 
         e = Array{Int, 1}()
         for (i, ev) in enumerate(raw_data[:, 2])
