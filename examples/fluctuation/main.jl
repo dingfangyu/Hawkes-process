@@ -1,7 +1,6 @@
 include("../../src/hp.jl")
 include("dataLoader.jl")
 
-
 # data
 files = ["examples/fluctuation/M4_20/" *
          string(i) * "event.txt"
@@ -48,11 +47,16 @@ plt.show()
 
 # predict
 for i in 1:20
+    predict(model, train_data[i], data[i][5] - train_data[i][5])
+
     plt.subplot(211)
     plt.hist(data[i][1], bins=200, range=(0.0, data[i][5]))
-    predict(model, train_data[i], data[i][5] - train_data[i][5])
+    plt.axvline(x=train_data[i][5], ymin=0, color="orange")
+
     plt.subplot(212)
     plt.hist(train_data[i][1], bins=200, range=(0.0, data[i][5]))
+    plt.axvline(x=train_data[i][5], ymin=0, color="orange")
+
     plt.show()
 
     # output
