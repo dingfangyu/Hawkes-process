@@ -57,6 +57,7 @@ for i in 1:20
     plt.hist(train_data[i][1], bins=200, range=(0.0, data[i][5]))
     plt.axvline(x=train_data[i][5], ymin=0, color="orange")
 
+    plt.savefig("examples/fluctuation/predData/plot" * string(i - 1) * ".jpg")
     plt.show()
 
     # output
