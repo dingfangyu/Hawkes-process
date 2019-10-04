@@ -8,7 +8,7 @@ files = ["examples/fluctuation/M4_20/" *
 data = load_data(files)
 
 # 0.9 size of data
-const proportion = 0.9
+const proportion = 0.95
 
 train_data = Array{Tuple, 1}()
 

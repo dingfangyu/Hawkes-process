@@ -21,7 +21,7 @@ Context-sensitive multivariate Hawkes process in JuliaLang v1.2.0
 
 ### simulation
 
-- Ogata's thinning algorithm (TODO)
+- Ogata's thinning algorithm 
 
 ### regularization
 
