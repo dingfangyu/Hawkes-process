@@ -7,11 +7,12 @@ mutable struct Hawkes
     features_num::Int
     mu::Array
     alpha::Array
+    # beta::Float64
 
     function Hawkes(
         ;
-        event_types_num::Int=1,
-        features_num::Int=0
+        event_types_num=1,
+        features_num=0
     )
         etn = event_types_num
         fn = features_num

@@ -1,14 +1,15 @@
 """
 negative log-likelihood
  - data: Array{Tuple, 1}
-         [(t_s1, e_s1, f_s1),
-          (t_s2, e_s2, f_s2),
+         [(t_s1, e_s1, f_s1, T0_s1, T_s1),
+          (t_s2, e_s2, f_s2, T0_s2, T_s2),
           ...,
-          (t_sm, e_sm, f_sm)]
+          (t_sm, e_sm, f_sm, T0_sm, T_sm)]
 
          t_si: Array{Float64, 1}    # happen times of sample i
          e_si: Array{Int, 1}        # event types of sample i
          f_si: Array{Float64, 2}    # features of sample i
+         T0_si, T_si: Float64       # time span of sample i
 """
 function loss(model::Hawkes, data::Array)::Float64
     samples_num::Int = length(data)
@@ -19,14 +20,11 @@ function loss(model::Hawkes, data::Array)::Float64
         # shadow copy
         t::Array{Float64, 1},
         e::Array{Int, 1},
-        f::Array{Float64, 2} = data[s]
+        f::Array{Float64, 2},
+        T0::Float64, T::Float64 = data[s]
 
         # events num
         n::Int = length(t)
-
-        # time span
-        T0::Float64 = t[1] # maybe 0, you can set it.
-        T::Float64 = t[end]
 
         # log(intensity) items
         for i = 1:n
