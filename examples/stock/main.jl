@@ -57,7 +57,7 @@ for i in 1:length(data)
     plt.show()
 
     # output
-    f = open("examples/fluctuation/predData/" * string(i - 1) * "pred.txt", "w")
+    f = open("examples/stock/predData/" * string(i - 1) * "pred.txt", "w")
     for (t, e) in zip(train_data[i][1], train_data[i][2])
         writedlm(f, [t e])
     end
