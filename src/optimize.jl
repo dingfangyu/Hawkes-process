@@ -105,6 +105,7 @@ function train!(
         end
 
         # push
-        push!(lo_his, loss(model, data))
+        # push!(lo_his, loss(model, data))
+        println("iteration: ", iter, ", loss: ", loss(model, data))
     end
 end

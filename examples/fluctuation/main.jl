@@ -33,7 +33,7 @@ model = Hawkes(event_types_num=2, features_num=0)
 
 # train
 loss_his = Array{Float64, 1}()
-train!(model, data, loss_his; iterations=100)
+train!(model, data, loss_his; iterations=50)
 
 
 # plot
@@ -58,7 +58,7 @@ for i in 1:20
     plt.axvline(x=train_data[i][5], ymin=0, color="orange")
 
     plt.savefig("examples/fluctuation/predData/plot" * string(i - 1) * ".jpg")
-    plt.show()
+    # plt.show()
 
     # output
     f = open("examples/fluctuation/predData/" * string(i - 1) * "pred.txt", "w")

@@ -1,7 +1,7 @@
 include("../../src/hp.jl")
 include("../../examples/fluctuation/dataLoader.jl")
 
-files = ["examples/stock/stockevent/" * string(i) * "event.txt" for i = 0:19]
+files = ["examples/stock/stockevent/" * string(i) * "event.txt" for i = 0:504]
 data = load_data(files)
 
 const proportion = 0.95
@@ -29,7 +29,7 @@ model = Hawkes(event_types_num=2, features_num=0)
 
 # train
 loss_his = Array{Float64, 1}()
-train!(model, data, loss_his; iterations=100)
+train!(model, data, loss_his; iterations=50)
 
 
 # plot
@@ -54,7 +54,8 @@ for i in 1:length(data)
     plt.axvline(x=train_data[i][5], ymin=0, color="orange")
 
     plt.savefig("examples/stock/predData/plot" * string(i - 1) * ".jpg")
-    plt.show()
+    # plt.show()
+    plt.close()
 
     # output
     f = open("examples/stock/predData/" * string(i - 1) * "pred.txt", "w")
