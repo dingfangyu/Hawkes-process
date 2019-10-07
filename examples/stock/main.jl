@@ -1,7 +1,7 @@
 include("../../src/hp.jl")
 include("../../examples/fluctuation/dataLoader.jl")
 
-files = ["examples/stock/stockevent.txt"]
+files = ["examples/stock/stockevent/" * string(i) * "event.txt" for i = 0:19]
 data = load_data(files)
 
 const proportion = 0.95
