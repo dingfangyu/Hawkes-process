@@ -7,7 +7,7 @@ mutable struct Hawkes
     features_num::Int
     mu::Array
     alpha::Array
-    # beta::Float64
+    beta::Float64
 
     function Hawkes(
         ;
@@ -19,6 +19,7 @@ mutable struct Hawkes
 
         mu = rand(Float64, etn, 1 + fn) # 2-dim Array
         alpha = rand(Float64, etn, etn) # 2-dim Array
-        return new(etn, fn, mu, alpha)
+        beta = rand(Float64)
+        return new(etn, fn, mu, alpha, beta)
     end
 end
