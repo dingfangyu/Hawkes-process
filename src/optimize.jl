@@ -18,11 +18,11 @@ function get_pq(
         den = 0.0
         den += sum(model.mu[e[i], :]' * f[i, :]) # 1x1 mat sum to scalar
         for j = 1:i - 1
-            den += model.alpha[e[i], e[j]] * g(t[i] - t[j])
+            den += model.alpha[e[i], e[j]] * g(t[i] - t[j], model)
         end
 
         for j = 1:i - 1
-            p[i, j] = model.alpha[e[i], e[j]] * g(t[i] - t[j]) / den
+            p[i, j] = model.alpha[e[i], e[j]] * g(t[i] - t[j], model) / den
         end
 
         for k = 1:model.features_num + 1
@@ -95,7 +95,7 @@ function train!(
                     end
                     for j = 1:n
                         if e[j] == v
-                            al_den += G(T - t[j])
+                            al_den += G(T - t[j], model)
                         end
                     end
 
@@ -104,8 +104,23 @@ function train!(
             end
         end
 
+        # update beta
+        beta_num = 0.0
+        beta_den = 0.0
+        for s in 1:samples_num
+            t, e, f, T0, T = data[s]
+            n = length(t)
+            for i = 1:n
+                for j = 1:i - 1
+                    beta_num += p[s][i, j]
+                    beta_den += p[s][i, j] * (t[i] - t[j])
+                end
+            end
+        end
+        model.beta = beta_num / beta_den
+
+
         # push
-        # push!(lo_his, loss(model, data))
         println("iteration: ", iter, ", loss: ", loss(model, data))
     end
 end
