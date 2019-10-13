@@ -15,7 +15,7 @@ function intensity(
     t, e, f, T0, T = history_data
     n = findlast(x -> x < t_now, t)
     for i = 1:n
-        ag_sum += model.alpha[event_type, e[i]] * g(t_now - t[i])
+        ag_sum += model.alpha[event_type, e[i]] * g(t_now - t[i], model)
     end
 
     return model.mu[event_type, :]' * f[end, :] + ag_sum # f
