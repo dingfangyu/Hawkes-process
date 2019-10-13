@@ -40,6 +40,7 @@ train!(model, data, loss_his; iterations=50)
 using PyCall
 @pyimport matplotlib.pyplot as plt
 
+println(model.beta)
 plt.imshow(model.alpha)
 plt.show()
 plt.imshow(model.mu)
@@ -58,6 +59,7 @@ for i in 1:20
     plt.axvline(x=train_data[i][5], ymin=0, color="orange")
 
     plt.savefig("examples/fluctuation/predData/plot" * string(i - 1) * ".jpg")
+    plt.close()
     # plt.show()
 
     # output
