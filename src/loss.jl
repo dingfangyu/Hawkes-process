@@ -30,7 +30,7 @@ function loss(model::Hawkes, data::Array)::Float64
         for i = 1:n
             ag_sum::Float64 = 0.0
             for j = 1:i - 1
-                ag_sum += model.alpha[e[i], e[j]] * g(t[i] - t[j])
+                ag_sum += model.alpha[e[i], e[j]] * g(t[i] - t[j], model)
             end
 
             l += log(
@@ -50,7 +50,7 @@ function loss(model::Hawkes, data::Array)::Float64
         aG_sum::Float64 = 0.0
         for ev = 1:model.event_types_num
             for j = 1:n
-                aG_sum += model.alpha[ev, e[j]] * G(T - t[j])
+                aG_sum += model.alpha[ev, e[j]] * G(T - t[j], model)
             end
         end
 
