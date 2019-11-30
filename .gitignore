@@ -1,1 +1,4 @@
 test
+
+examples/disease-network/*.csv
+examples/disease-network/*.pkl

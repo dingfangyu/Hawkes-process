@@ -29,3 +29,4 @@ Context-sensitive multivariate Hawkes process in JuliaLang v1.2.0
   - nuclear norm (TODO)
 - sparsity
   - l1 norm (TODO)
+  
