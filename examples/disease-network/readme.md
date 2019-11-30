@@ -9,8 +9,8 @@ find diseases' relationship and incidence probability by analyzing multiple pati
 ### results
 - Alpha matrix
 
-![alpha.png](https://github.com/Arthur-99/Hawkes-process/tree/master/examples/disease-network/alpha.png)
+![alpha.png](examples/disease-network/alpha.png)
 
 - Network
 
-![network.png](https://github.com/Arthur-99/Hawkes-process/tree/master/examples/disease-network/network.png)
+![network.png](examples/disease-network/network.png)
