@@ -29,4 +29,13 @@ Context-sensitive multivariate Hawkes process in JuliaLang v1.2.0
   - nuclear norm (TODO)
 - sparsity
   - l1 norm (TODO)
-  
+
+### demo
+
+- Alpha matrix
+
+![alpha.png](https://github.com/Arthur-99/Hawkes-process/tree/master/examples/disease-network/alpha.png)
+
+- Network
+
+![network.png](https://github.com/Arthur-99/Hawkes-process/tree/master/examples/disease-network/network.png)
