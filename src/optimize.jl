@@ -74,7 +74,7 @@ function train!(
                         mu_den += f[i, k] * (t[i + 1] - t[i])
                     end
                 end
-                model.mu[ev, k] = mu_num / mu_den
+                model.mu[ev, k] = mu_num / (mu_den + 1e-5)
             end
         end
 
@@ -100,7 +100,7 @@ function train!(
                     end
 
                 end
-                model.alpha[u, v] = al_num / al_den
+                model.alpha[u, v] = al_num / (al_den + 1e-5)
             end
         end
 
@@ -117,7 +117,7 @@ function train!(
                 end
             end
         end
-        model.beta = beta_num / beta_den
+        model.beta = beta_num / (beta_den + 1e-5)
 
 
         # push
